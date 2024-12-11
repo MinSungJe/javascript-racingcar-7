@@ -1,4 +1,5 @@
 import getRandomPower from '../Util/getRandomPower.js';
+import OutputView from '../View/OutputView.js';
 
 class RacingGame {
   carList;
@@ -11,7 +12,7 @@ class RacingGame {
 
   getMaxPosition() {
     return this.carList.reduce((maxPosition, car) => {
-      if (maxPosition < car.position) return car.position;
+      return Math.max(maxPosition, car.position);
     }, 0);
   }
 
@@ -25,6 +26,14 @@ class RacingGame {
       const power = getRandomPower();
       car.move(power);
     });
+    this.printStatus();
+  }
+
+  printStatus() {
+    this.carList.forEach((car) =>
+      OutputView.printMessage(`${car.name} : ${'-'.repeat(car.position)}`)
+    );
+    OutputView.printBlank();
   }
 
   move() {

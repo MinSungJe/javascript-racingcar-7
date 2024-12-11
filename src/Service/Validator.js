@@ -1,7 +1,10 @@
 const Validator = {
   checkCarName(carNameString) {
     const carNameList = carNameString.split(',');
+    return this.checkCarNameList(carNameList);
+  },
 
+  checkCarNameList(carNameList) {
     if (carNameList.filter((carName) => carName === '').length !== 0) return false;
     if (carNameList.filter((carName) => carName.length > 5).length !== 0) return false;
     return true;
