@@ -1,3 +1,5 @@
+import getRandomPower from '../Util/getRandomPower.js';
+
 class RacingGame {
   carList;
   count;
@@ -16,6 +18,17 @@ class RacingGame {
   getWinnerName() {
     const maxPostion = this.getMaxPosition();
     return this.carList.filter((car) => car.position === maxPostion).map((car) => car.name);
+  }
+
+  moveOnce() {
+    this.carList.forEach((car) => {
+      const power = getRandomPower();
+      car.move(power);
+    });
+  }
+
+  move() {
+    for (let i = 0; i < this.count; i++) this.moveOnce();
   }
 }
 
